@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface DrinkRepository extends JpaRepository<Drink, Long> {
 //    you can also write your own custom query using: @Query("")
-    List<Drink> findDrinkByPriceGreaterThan(int price);
+//    List<Drink> findDrinkByPriceGreaterThan(int price);
 }
