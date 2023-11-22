@@ -17,13 +17,9 @@ public class DrinkServiceImpl implements DrinkService{
         return drinkRepository.save(drink);
     }
 
-    @Override
-    public Drink getDrinkById(long id) {
-        return null;
-    }
 
     @Override
-    public Drink getDrinkById(Long id) {
+    public Drink getDrinkById(long id) {
         Optional<Drink> drink = drinkRepository.findById(id);
 
         Drink emptyDrink = null;
@@ -42,12 +38,29 @@ public class DrinkServiceImpl implements DrinkService{
 
 
     @Override
-    public Drink updateDrinkById(long id) {
-        return null;
+    public Drink updateDrinkById(Drink drink) {
+        Optional<Drink> optionalDrink = drinkRepository.findById(drink.getId());
+
+        if (optionalDrink.isPresent()){
+            Drink updateDrink = new Drink();
+            updateDrink.setCapacity(drink.getCapacity());
+            updateDrink.setColor(drink.getColor());
+            updateDrink.setName(drink.getName());
+            updateDrink.setType(drink.getType());
+            updateDrink.setCompany(drink.getCompany());
+            updateDrink.setId(drink.setId());
+            updateDrink.setIngredients(drink.getIngredients());
+
+            drinkRepository.save(updateDrink);
+            return updateDrink;
+        } else{
+            throw new RuntimeException("Drink does not exist");
+        }
+
     }
 
     @Override
-    public Drink deleteDrinkById(long id) {
-        return null;
+    public void deleteDrinkById(long id) {
+        drinkRepository.deleteById(id);
     }
 }

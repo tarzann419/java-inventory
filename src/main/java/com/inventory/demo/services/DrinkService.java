@@ -7,12 +7,7 @@ import java.util.List;
 public interface DrinkService {
     Drink saveDrink(Drink drink);
     Drink getDrinkById(long id);
-
-    Drink getDrinkById(Long id);
-
     List<Drink> getAllDrink();
-
-
-    Drink updateDrinkById(long id);
-    Drink deleteDrinkById(long id);
+    Drink updateDrinkById(Drink drink);
+    void deleteDrinkById(long id);
 }
