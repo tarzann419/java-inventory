@@ -4,6 +4,7 @@ import com.inventory.demo.domain.Drink;
 import com.inventory.demo.repository.DrinkRepository;
 import com.inventory.demo.services.DrinkService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +39,11 @@ public class DrinkAPIController {
     @PutMapping("/drink/{id}")
     public ResponseEntity<Drink> updateDrink(@PathVariable long id, @RequestBody Drink drink){
         return ResponseEntity.ok().body(drinkService.updateDrinkById(drink));
+    }
+
+    @DeleteMapping("/drink/{id}")
+    public HttpStatus deleteDrink(@PathVariable long id){
+        drinkService.deleteDrinkById(id);
+        return HttpStatus.OK;
     }
 }
