@@ -1,10 +1,10 @@
 package com.inventory.demo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,6 +12,7 @@ import java.util.List;
 //or @Entity(name = "drink")
 public class Drink {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private int capacity;
@@ -19,6 +20,11 @@ public class Drink {
     private String type;
     private String company;
 
+    @CreationTimestamp
+    Date created_at;
+
+    @UpdateTimestamp
+    Date updated_at;
     public Drink() {
     }
 
