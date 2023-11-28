@@ -5,8 +5,7 @@ import com.inventory.demo.repository.DrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +21,21 @@ public class DrinkAPIController {
     @GetMapping("/drinks")
     public ResponseEntity<List<Drink>> getAllDrinks(){
         return ResponseEntity.ok().body(drinkRepository.findAll());
+    }
+
+    @RequestMapping("/drinks/{id}")
+    @GetMapping
+    public ResponseEntity<Drink> getDrinkById(@PathVariable long id){
+        return ResponseEntity.ok().body(drinkService.getDrinkById(id));
+    }
+
+    @PostMapping("/drink")
+    public ResponseEntity<Drink> createDrink(@RequestBody Drink drink){
+        return ResponseEntity.ok().body(drinkService.saveDrink(id));
+    }
+
+    @PutMapping("/drink/{id}")
+    public ResponseEntity<Drink> updateDrink(@PathVariable long id, @RequestBody Drink drink){
+        return ResponseEntity.ok().body(drinkService.updateDrink(drink));
     }
 }
