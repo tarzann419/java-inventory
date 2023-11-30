@@ -26,6 +26,8 @@ public class DrinkController {
     public String showNewDrinkForm(Model model){
         Drink drink = new Drink();
         model.addAttribute("drink", drink);
+        model.addAttribute("pageTitle", "Add Drink");
+
 
         return "new_drink";
     }
@@ -33,7 +35,7 @@ public class DrinkController {
     @PostMapping("/saveDrink")
     public String saveDrink(@ModelAttribute("drink") Drink drink, RedirectAttributes redirectAttributes){
         drinkService.saveDrink(drink);
-        redirectAttributes.addFlashAttribute("message", "Drink added successfully");
+        redirectAttributes.addFlashAttribute("message", "Drink updated successfully");
 
         return "redirect:/";
     }
@@ -43,8 +45,9 @@ public class DrinkController {
         try{
             Drink drink = drinkService.getDrinkById(id);
             model.addAttribute("drink", drink);
+            model.addAttribute("pageTitle", "Edit Drink Id:" + id);
 
-            return "edit_form";
+            return "new_drink";
         } catch (Exception e){
             redirectAttributes.addFlashAttribute("message", e.getMessage());
 
