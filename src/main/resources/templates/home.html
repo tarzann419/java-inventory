@@ -32,8 +32,8 @@
         <td th:text="${drink.company}"></td>
         <td th:text="${drink.type}"></td>
         <td>
-          <a class="btn btn-primary">Update</a>
-          <a class="btn btn-danger">Delete</a>
+          <a class="h4 btn btn-primary mr-3" th:href="@{'/updateDrink/' + ${drink.id}}">Edit</a>
+          <a th:onclick="return confirm('are you sure you want to delete?')" class="h4 btn btn-danger" th:href="@{'/deleteDrink/' + ${drink.id}}">Delete</a>
         </td>
       </tr>
     </tbody>

@@ -1,0 +1,68 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/fragments :: head}"></head>
+
+<body>
+<h1>Update Drink</h1>
+
+<!-- back home button -->
+<div class="container mt-3">
+  <a th:href="@{/}" class="btn btn-primary btn-sm">Back Home</a>
+</div>
+
+<!-- add drink Form -->
+<form th:action="@{/updateDrink}" th:method="post" th:object="${drink}" class="container mt-3">
+
+  <div class="border p-3">
+    <input type="hidden" th:field="*{id}">
+    <div class="form-group row">
+      <label th:for="DrinkName" class="col-sm-4 col-form-label required">Drink Name</label>
+      <div class="col-sm-8">
+        <input type="text" th:field="*{name}" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label th:for="DrinkType" class="col-sm-4 col-form-label">Drink Type</label>
+      <div class="col-sm-8">
+        <input type="text" th:field="*{type}" class="form-control">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label th:for="DrinkCapacity" class="col-sm-4 col-form-label required">Drink Capacity</label>
+      <div class="col-sm-8">
+        <div class="input-group">
+          <input type="number" th:placeholder="Litres" th:field="*{capacity}" class="form-control" maxlength="4" required>
+          <div class="input-group-append">
+            <span class="input-group-text">Litres</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label th:for="DrinkCompany" class="col-sm-4 col-form-label">Drink Company</label>
+      <div class="col-sm-8">
+        <input type="text" th:field="*{company}" class="form-control">
+      </div>
+    </div>
+
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary m-2">Submit</button>
+      <button type="button" class="btn btn-secondary m-2" th:onclick="cancelForm()">Cancel</button>
+    </div>
+  </div>
+
+</form>
+
+<script type="text/javascript">
+  function cancelForm() {
+    window.location = "[[@{/}]]";
+  }
+</script>
+
+</body>
+</html>

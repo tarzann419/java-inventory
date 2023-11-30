@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head th:fragment="head">
+    <style>
+        /* Custom style for the red asterisk */
+        .required::after {
+            content: "*";
+            color: red;
+            margin-right: 2px;
+        }
+    </style>
     <meta charset="UTF-8">
     <!--link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/navbars/"-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
