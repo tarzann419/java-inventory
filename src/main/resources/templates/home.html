@@ -7,10 +7,15 @@
 
 
 <body>
-<div>
+
+<div class="m-2">
   <a th:href="@{/showNewDrinkForm}" class="btn btn-primary btn-sm mb-3">Add new drink</a>
 </div>
 
+<!--send a flash message-->
+<div th:if="${message}" class="alert alert-success text-center">
+  [[${message}]]
+</div>
 
   <table border="1" class="table table-striped table-responsive">
     <thead>

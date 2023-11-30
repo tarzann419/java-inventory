@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 
@@ -31,8 +32,10 @@ public class DrinkController {
     }
 
     @PostMapping("/saveDrink")
-    public String saveDrink(@ModelAttribute("drink") Drink drink){
+    public String saveDrink(@ModelAttribute("drink") Drink drink, RedirectAttributes redirectAttributes){
         drinkService.saveDrink(drink);
+        redirectAttributes.addFlashAttribute("message", "User added successfully");
+
         return "redirect:/";
     }
 }
