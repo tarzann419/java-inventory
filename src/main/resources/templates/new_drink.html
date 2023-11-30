@@ -5,17 +5,15 @@
 
 <body>
 
-<!-- Back Home button -->
+<!-- back home button -->
 <div class="container mt-3">
   <a th:href="@{/}" class="btn btn-primary btn-sm">Back Home</a>
 </div>
 
-<!-- Drink Form -->
+<!-- add drink Form -->
 <form th:action="@{/saveDrink}" th:method="post" th:object="${drink}" class="container mt-3">
 
-  <!-- Form Fields -->
   <div class="border p-3">
-    <!-- Drink Name Field -->
     <div class="form-group row">
       <label th:for="DrinkName" class="col-sm-4 col-form-label required">Drink Name</label>
       <div class="col-sm-8">
@@ -23,7 +21,6 @@
       </div>
     </div>
 
-    <!-- Drink Type Field -->
     <div class="form-group row">
       <label th:for="DrinkType" class="col-sm-4 col-form-label">Drink Type</label>
       <div class="col-sm-8">
@@ -31,7 +28,6 @@
       </div>
     </div>
 
-    <!-- Drink Capacity Field -->
     <div class="form-group row">
       <label th:for="DrinkCapacity" class="col-sm-4 col-form-label required">Drink Capacity</label>
       <div class="col-sm-8">
@@ -44,7 +40,6 @@
       </div>
     </div>
 
-    <!-- Drink Company Field -->
     <div class="form-group row">
       <label th:for="DrinkCompany" class="col-sm-4 col-form-label">Drink Company</label>
       <div class="col-sm-8">
@@ -53,7 +48,6 @@
     </div>
 
 
-    <!-- Form Submission Buttons -->
     <div class="text-center">
       <button type="submit" class="btn btn-primary m-2">Submit</button>
       <button type="button" class="btn btn-secondary m-2" th:onclick="cancelForm()">Cancel</button>
