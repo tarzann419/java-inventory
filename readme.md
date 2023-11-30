@@ -1,7 +1,9 @@
 # Project README
 
 This Java application follows the pattern of Domain -> Repository -> Services -> Controller for managing drink-related information.
-
+![java-inv-1.png](java-inv-1.png)
+![java-inv-2.png](java-inv-2.png)
+![java-inv-3.png](java-inv-3.png)
 ## 1. Domain
 
 ### Drink.java
@@ -141,38 +143,7 @@ public class DrinkServiceImpl implements DrinkService {
 The `api/DrinkAPIController` class handles API endpoints related to drinks.
 
 ```java
-@RestController
-@RequestMapping("/api/drinks")
-public class DrinkAPIController {
 
-    @Autowired
-    private DrinkService drinkService;
-
-    @PostMapping
-    public ResponseEntity<Drink> saveDrink(@RequestBody Drink drink) {
-        return new ResponseEntity<>(drinkService.saveDrink(drink), HttpStatus.CREATED);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Drink> getDrinkById(@PathVariable long id) {
-        return new ResponseEntity<>(drinkService.getDrinkById(id), HttpStatus.OK);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Drink>> getAllDrinks() {
-        return new ResponseEntity<>(drinkService.getAllDrinks(), HttpStatus.OK);
-    }
-
-    @PutMapping
-    public ResponseEntity<Drink> updateDrinkById(@RequestBody Drink drink) {
-        return new ResponseEntity<>(drinkService.updateDrinkById(drink), HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteDrinkById(@PathVariable long id) {
-        drinkService.deleteDrinkById(id);
-        return new ResponseEntity<>("Drink deleted successfully", HttpStatus.OK);
-    }
 }
 ```
 
