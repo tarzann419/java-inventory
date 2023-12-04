@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.NoSuchElementException;
+
 @Controller
 
 public class DrinkController {
@@ -28,7 +30,6 @@ public class DrinkController {
         model.addAttribute("drink", drink);
         model.addAttribute("pageTitle", "Add Drink");
 
-
         return "new_drink";
     }
 
@@ -36,13 +37,14 @@ public class DrinkController {
     public String saveDrink(@ModelAttribute("drink") Drink drink, RedirectAttributes redirectAttributes){
         drinkService.saveDrink(drink);
         redirectAttributes.addFlashAttribute("message", "Drink updated successfully");
+        redirectAttributes.addFlashAttribute("color", "success");
 
         return "redirect:/";
     }
 
     @GetMapping("/updateDrink/{id}")
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes){
-        try{
+        try {
             Drink drink = drinkService.getDrinkById(id);
             model.addAttribute("drink", drink);
             model.addAttribute("pageTitle", "Edit Drink Id:" + id);
@@ -50,23 +52,33 @@ public class DrinkController {
             return "new_drink";
         } catch (Exception e){
             redirectAttributes.addFlashAttribute("message", e.getMessage());
+            redirectAttributes.addFlashAttribute("color", "danger");
 
             return "redirect:/";
         }
     }
 
     @PostMapping("/updateDrink")
-    public String updateDrink(@ModelAttribute("drink") Drink drink, RedirectAttributes redirectAttributes){
-        drinkService.saveDrink(drink);
-        redirectAttributes.addFlashAttribute("message", "Drink updated successfully");
-
+    public String updateDrink(@ModelAttribute("drink") Drink drink, RedirectAttributes redirectAttributes) {
+        try {
+            drinkService.saveDrink(drink);
+            redirectAttributes.addFlashAttribute("message", "Drink updated successfully");
+        } catch (Exception e){
+            redirectAttributes.addFlashAttribute("message", "Error updating drink: " + e.getMessage());
+        }
         return "redirect:/";
     }
 
     @GetMapping("deleteDrink/{id}")
     public String deleteDrink(@PathVariable long id, RedirectAttributes redirectAttributes){
-        drinkService.deleteDrinkById(id);
-        redirectAttributes.addFlashAttribute("message", "Drink Deleted successfully");
+        try {
+            drinkService.deleteDrinkById(id);
+            redirectAttributes.addFlashAttribute("message", "Drink Deleted successfully");
+            redirectAttributes.addFlashAttribute("color", "success");
+        } catch (Exception e){
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+            redirectAttributes.addFlashAttribute("color", "danger");
+        }
 
         return "redirect:/";
     }

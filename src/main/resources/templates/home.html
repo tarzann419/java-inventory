@@ -13,7 +13,7 @@
 </div>
 
 <!--send a flash message-->
-<div th:if="${message}" class="alert alert-success text-center">
+<div th:if="${message}" th:class="'alert alert-' + ${color} + ' text-center'">
   [[${message}]]
 </div>
 
