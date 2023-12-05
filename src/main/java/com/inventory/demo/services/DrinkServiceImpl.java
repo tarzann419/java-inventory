@@ -12,11 +12,11 @@ import java.util.Optional;
 public class DrinkServiceImpl implements DrinkService{
     @Autowired
     DrinkRepository drinkRepository;
+
     @Override
     public Drink saveDrink(Drink drink) {
         return drinkRepository.save(drink);
     }
-
 
     @Override
     public Drink getDrinkById(long id) {

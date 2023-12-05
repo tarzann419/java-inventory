@@ -17,7 +17,6 @@ public class DrinkController {
     @Autowired
     DrinkService drinkService;
 
-
     @GetMapping("/")
     public String homePage(Model model){
         model.addAttribute("drinks", drinkService.getAllDrink());
